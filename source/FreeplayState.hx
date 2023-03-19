@@ -90,7 +90,7 @@ class FreeplayState extends MusicBeatState
 		var line:FlxSprite = new FlxSprite(FlxG.width/4-5).makeGraphic(10, 720, FlxColor.BLACK);
 		add(line);
 
-		backdropline = new FlxBackdrop(Paths.image('freeplay/sidebar'),Y,0,0);
+		backdropline = new FlxBackdrop(Paths.image('freeplay/sidebar'), 1, 1, false, true, 0, 0);
 		backdropline.velocity.set(0,50);
 		backdropline.antialiasing = ClientPrefs.globalAntialiasing;
 		add(backdropline);
