@@ -54,6 +54,11 @@ class FreeplayState extends MusicBeatState
 		//Paths.clearStoredMemory();
 		//Paths.clearUnusedMemory();
 		
+
+                #if android
+                addVirtualPad(FULL, A_B_C_X_Y_Z);
+                #end
+
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
@@ -207,11 +212,11 @@ class FreeplayState extends MusicBeatState
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
-		var space = FlxG.keys.justPressed.SPACE;
-		var ctrl = FlxG.keys.justPressed.CONTROL;
+		var space = FlxG.keys.justPressed.SPACE #if android || _virtualpad.buttonX.justPressed #end;
+		var ctrl = FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonC.justPressed #end;
 
 		var shiftMult:Int = 1;
-		if(FlxG.keys.pressed.SHIFT) shiftMult = 3;
+		if(FlxG.keys.pressed.SHIFT #if android || _virtualpad.buttonZ.pressed #end) shiftMult = 3;
 
 		if(weekOn){
 			diffText.visible = true;
@@ -293,6 +298,10 @@ class FreeplayState extends MusicBeatState
 
 		if(ctrl)
 		{
+			#if android
+			removeVirtualPad();
+			#end
+
 			persistentUpdate = false;
 			openSubState(new GameplayChangersSubstate());
 		}
@@ -344,7 +353,7 @@ class FreeplayState extends MusicBeatState
 
 				trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			
-				if (FlxG.keys.pressed.SHIFT){
+				if (FlxG.keys.pressed.SHIFT #if android || _virtualpad.buttonZ.pressed #end){
 					LoadingState.loadAndSwitchState(new ChartingState());
 				}else{
 				LoadingState.loadAndSwitchState(new PlayState());
@@ -356,8 +365,12 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 		
-		else if(controls.RESET && weekOn)
+		else if(controls.RESET #if android || _virtualpad.buttonY.justPressed #end && weekOn)
 		{
+			#if android
+			removeVirtualPad();
+			#end
+
 			persistentUpdate = false;
 			openSubState(new ResetScoreSubState(songs[curSelected].songName[curSong], curDifficulty, 'bf'));
 			FlxG.sound.play(Paths.sound('scrollMenu'));
