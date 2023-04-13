@@ -212,7 +212,6 @@ class PauseSubState extends MusicBeatSubstate
 						MusicBeatState.resetState();
 						FlxG.sound.music.volume = 0;
 						PlayState.changedDifficulty = true;
-						PlayState.cpuControlled = false;
 						return;
 					}
 				}
