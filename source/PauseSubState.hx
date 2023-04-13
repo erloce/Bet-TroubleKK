@@ -32,10 +32,7 @@ class PauseSubState extends MusicBeatSubstate
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
-	var practiceText:FlxText;
 	var botplayText:FlxText;
-
-	public var practiceMode:Bool = false;
 
 	var camThing:FlxCamera;
 
@@ -178,8 +175,8 @@ class PauseSubState extends MusicBeatSubstate
 			actualText.ID = i;
 			actualText.x += (i + 1) * 480;
 			actualText.y = FlxG.height / 2 + 70 + 100 * i + 5;
-			if (!practiceMode){
-			FlxTween.tween(actualText, {x: FlxG.width - 400 - 80 * i + 25}, 0.2, {ease: FlxEase.quadOut});}
+
+			FlxTween.tween(actualText, {x: FlxG.width - 400 - 80 * i + 25}, 0.2, {ease: FlxEase.quadOut});
 			grpMenuShit2.add(actualText);
 		}
 
