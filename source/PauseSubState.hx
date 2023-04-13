@@ -33,14 +33,11 @@ class PauseSubState extends MusicBeatSubstate
 
 	var pauseMusic:FlxSound;
 
-	var camThing:FlxCamera;
-
 	var colorSwap:ColorSwap;
 
 	var grayButton:FlxSprite;
 
 	var bottomPause:FlxSprite;
-	var topPause:FlxSprite;
 
         public static var songName:String = '';
         var charSpr:FlxSprite;
@@ -58,13 +55,6 @@ class PauseSubState extends MusicBeatSubstate
 
 	public function new(x:Float, y:Float)
 	{
-
-
-
-		camThing = new FlxCamera();
-		camThing.bgColor.alpha = 0;
-		FlxG.cameras.add(camThing);
-
 		super();
 		menuItems = menuItemsOG;
 
@@ -89,18 +79,20 @@ class PauseSubState extends MusicBeatSubstate
 
 		boyfriend = new Boyfriend(0, 0, PlayState.SONG.player1);
 
+		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg.alpha = 0;
+		bg.scrollFactor.set();
+		add(bg);
+
 		bottomPause = new FlxSprite(1280, 33).loadGraphic(Paths.image('pauseStuff/bottomPanel'));
-		FlxTween.tween(bottomPause, {x: 589}, 0.2, {ease: FlxEase.quadOut});
+		FlxTween.tween(bottomPause, {x: 589}, 0.5, {ease: FlxEase.quartInOut});
 		add(bottomPause);
-
-
-		topPause = new FlxSprite(-1000, 0).loadGraphic(Paths.image("pauseStuff/pauseTop"));
-		add(topPause);
-		FlxTween.tween(topPause, {x: 0}, 0.2, {ease: FlxEase.quadOut});
 
                 charSpr = new FlxSprite(-1000, 0).loadGraphic(Paths.image("pauseStuff/" + PlayState.SONG.player2));
                 add(charSpr);
-                FlxTween.tween(charSpr, {x: 0}, 0.5, {ease: FlxEase.quadOut});
+                FlxTween.tween(charSpr, {x: 0}, 1, {ease: FlxEase.quartInOut});
+
+		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
@@ -139,7 +131,7 @@ class PauseSubState extends MusicBeatSubstate
 		grayButton = new FlxSprite().loadGraphic(Paths.image('pauseStuff/graybut'));
 		grayButton.x = FlxG.width - 400 + 480;
 		grayButton.y = FlxG.height / 2 + 70;
-		FlxTween.tween(grayButton, {x: grayButton.x - 480}, 0.2, {ease: FlxEase.quadOut});
+		FlxTween.tween(grayButton, {x: grayButton.x - 480}, 0.5, {ease: FlxEase.quartInOut});
 		add(grayButton);
 
 		grpMenuShit = new FlxTypedGroup<FlxSprite>();
@@ -154,14 +146,14 @@ class PauseSubState extends MusicBeatSubstate
 			songText.loadGraphic(Paths.image("pauseStuff/blackbut"));
 			songText.x += (i + 1) * 480;
 			songText.ID = i;
-			FlxTween.tween(songText, {x: songText.x - 480 * (i + 1)}, 0.2, {ease: FlxEase.quadOut});
+			FlxTween.tween(songText, {x: songText.x - 480 * (i + 1)}, 0.5, {ease: FlxEase.quartInOut});
 			grpMenuShit.add(songText);
 			var actualText:FlxSprite = new FlxSprite(songText.x + 25, songText.y + 25).loadGraphic(Paths.image(StringTools.replace("pauseStuff/" + menuItems[i], " ", "")));
 			actualText.ID = i;
 			actualText.x += (i + 1) * 480;
 			actualText.y = FlxG.height / 2 + 70 + 100 * i + 5;
 
-			FlxTween.tween(actualText, {x: FlxG.width - 400 - 80 * i + 25}, 0.2, {ease: FlxEase.quadOut});
+			FlxTween.tween(actualText, {x: FlxG.width - 400 - 80 * i + 25}, 0.5, {ease: FlxEase.quartInOut});
 			grpMenuShit2.add(actualText);
 		}
 
@@ -171,7 +163,7 @@ class PauseSubState extends MusicBeatSubstate
 			coolDown = true;
 			changeSelection();
 		});
-		cameras = [camThing];
+		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]]
                 #if mobile addVirtualPad(UP_DOWN, A); addPadCamera(); #end
 	}
 
@@ -221,16 +213,17 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.sound.play(Paths.sound("unpause"));
 						grpMenuShit.forEach(function(item:FlxSprite)
 						{
-							FlxTween.tween(item, {x: item.x + 480 * (item.ID + 1)}, 0.2, {ease: FlxEase.quadOut});
+							FlxTween.tween(item, {x: item.x + 480 * (item.ID + 1)}, 0.5, {ease: FlxEase.quartInOut});
 						});
 						grpMenuShit2.forEach(function(item2:FlxSprite)
 						{
-							FlxTween.tween(item2, {x: item2.x + 480 * (item2.ID + 1)}, 0.2, {ease: FlxEase.quadOut});
+							FlxTween.tween(item2, {x: item2.x + 480 * (item2.ID + 1)}, 0.5, {ease: FlxEase.quartInOut});
 						});
-						FlxTween.tween(grayButton, {x: grayButton.x + 480 * (curSelected + 1)}, 0.2, {ease: FlxEase.quadOut});
+						FlxTween.tween(grayButton, {x: grayButton.x + 480 * (curSelected + 1)}, 0.5, {ease: FlxEase.quartInOut});
 
-						FlxTween.tween(topPause, {x: -1000}, 0.2, {ease: FlxEase.quadOut});
-						FlxTween.tween(bottomPause, {x: 1280}, 0.2, {ease: FlxEase.quadOut, onComplete: function(ok:FlxTween)
+                                                FlxTween.tween(charSpr, {x: -1000}, 0.5, {ease: FlxEase.quartInOut});
+                                                FlxTween.tween(bg, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
+						FlxTween.tween(bottomPause, {x: 1280}, 0.5, {ease: FlxEase.quartInOut, onComplete: function(ok:FlxTween)
 						{
 							close();
 						}});
@@ -276,7 +269,6 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function destroy()
 	{
-		camThing.destroy();
 		pauseMusic.destroy();
 
 		super.destroy();
