@@ -18,13 +18,10 @@ import flixel.FlxCamera;
 import flixel.addons.display.FlxBackdrop;
 import openfl.filters.ShaderFilter;
 import flixel.util.FlxTimer;
-import android.FlxVirtualPad;
 
 //stolen from sonic exe lol
 class PauseSubState extends MusicBeatSubstate
 {
-        var virtualPad:FlxVirtualPad;
-
 	var grpMenuShit:FlxTypedGroup<FlxSprite>;
 
 	var grpMenuShit2:FlxTypedGroup<FlxSprite>;
@@ -185,8 +182,8 @@ class PauseSubState extends MusicBeatSubstate
 
 		//super.update(elapsed);
 
-		var upP = controls.UI_UP_P #if mobile || virtualPad.buttonUp.justPressed #end;
-		var downP = controls.UI_DOWN_P #if mobile || virtualPad.buttonDown.justPressed #end;
+		var upP = controls.UI_UP_P;
+		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
 
 		if (coolDown)
