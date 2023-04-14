@@ -163,7 +163,7 @@ class PauseSubState extends MusicBeatSubstate
 			coolDown = true;
 			changeSelection();
 		});
-		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]]
+		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
                 #if mobile addVirtualPad(UP_DOWN, A); addPadCamera(); #end
 	}
 
