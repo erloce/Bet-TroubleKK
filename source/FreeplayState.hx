@@ -26,6 +26,7 @@ import sys.FileSystem;
 
 using StringTools;
 
+//Sonic exe lol
 class FreeplayState extends MusicBeatState
 {
 	var songs:Array<SongMetadata> = [];
