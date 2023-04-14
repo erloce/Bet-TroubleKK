@@ -46,6 +46,7 @@ class FreeplayState extends MusicBeatState
 
 	var bg:FlxSprite;
 	var backdropline:FlxBackdrop;
+	var backdropline2:FlxBackdrop;
 	var grupo:FlxTypedGroup<FlxSprite>;
 	var grupoImagen:FlxTypedGroup<FlxSprite>;
 	var grupoTexto:FlxTypedGroup<FlxText>;
