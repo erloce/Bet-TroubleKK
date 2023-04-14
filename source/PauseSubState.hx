@@ -222,7 +222,6 @@ class PauseSubState extends MusicBeatSubstate
 						FlxTween.tween(grayButton, {x: grayButton.x + 480 * (curSelected + 1)}, 0.5, {ease: FlxEase.quartInOut});
 
                                                 FlxTween.tween(charSpr, {x: -1000}, 0.5, {ease: FlxEase.quartInOut});
-                                                FlxTween.tween(bg, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
 						FlxTween.tween(bottomPause, {x: 1280}, 0.5, {ease: FlxEase.quartInOut, onComplete: function(ok:FlxTween)
 						{
 							close();
