@@ -408,7 +408,7 @@ class FreeplayState extends MusicBeatState
 					itext.offset.x = 0;
 				}
 				itext.y = (FlxG.height / 2)-(songs[curSelected].songName.length * 70/2) + 70 * i ;
-				itext.x =FlxG.width/2 * 3 - itext.width/2;
+				itext.x =FlxG.width/4 * 3 - itext.width/2;
 				grupoTexto.add(itext);
 			}
 
