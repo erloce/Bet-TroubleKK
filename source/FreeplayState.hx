@@ -53,11 +53,6 @@ class FreeplayState extends MusicBeatState
 	{
 		//Paths.clearStoredMemory();
 		//Paths.clearUnusedMemory();
-		
-
-                #if android
-                addVirtualPad(FULL, A_B_C_X_Y_Z);
-                #end
 
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
@@ -100,6 +95,11 @@ class FreeplayState extends MusicBeatState
 		backdropline.antialiasing = ClientPrefs.globalAntialiasing;
 		add(backdropline);
 
+		backdropline2 = new FlxBackdrop(Paths.image('freeplay/sidebar2'), 1, 1, false, true, 0, 0);
+		backdropline2.velocity.set(0,-50);
+		backdropline2.antialiasing = ClientPrefs.globalAntialiasing;
+		add(backdropline2);
+
 		grupoImagen = new FlxTypedGroup<FlxSprite>();
 		add(grupoImagen);
 
@@ -113,7 +113,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var box:FlxSprite = new FlxSprite();
 			box.loadGraphic(Paths.image('freeplay/FreeBox'));
-			box.x=FlxG.width / 4 -(box.width/2);
+			box.x=FlxG.width / 2 -(box.width/2);
 			box.y= FlxG.height / 2 -(box.height/2) + (i * 415);
 			box.antialiasing = ClientPrefs.globalAntialiasing;
 			box.ID = i;
@@ -122,7 +122,7 @@ class FreeplayState extends MusicBeatState
 
 			var imagen:FlxSprite = new FlxSprite();
 			imagen.loadGraphic(Paths.image('freeplay/weeks/'+ WeekData.weeksList[i]));
-			imagen.x=FlxG.width / 4 -(imagen.width/2);
+			imagen.x=FlxG.width / 2 -(imagen.width/2);
 			imagen.y= FlxG.height / 2 -(imagen.height/2) + (i * 415);
 			imagen.antialiasing = ClientPrefs.globalAntialiasing;
 			imagen.ID = i;
@@ -132,14 +132,14 @@ class FreeplayState extends MusicBeatState
 		WeekData.setDirectoryFromWeek();
 
 		songText = new FlxText(0,5,0, "");
-		songText.setFormat(Paths.font("Sonic CD Menu Font Regular.ttf"),36, FlxColor.WHITE, CENTER);
+		songText.setFormat(Paths.font("PhantomMuff.ttf"),60, FlxColor.WHITE, CENTER);
 		add(songText);
 
-		diffText = new FlxText(0,songText.y + 70,0, "",18);
+		diffText = new FlxText(0,songText.y + 86,0, "",18);
 		diffText.font = songText.font;
 		add(diffText);
 
-		scoreText = new FlxText(0,diffText.y+36, 0, "",18);
+		scoreText = new FlxText(0,diffText.y+ 50, 0, "",18);
 		scoreText.font = diffText.font;
 
 		add(scoreText);
@@ -154,6 +154,10 @@ class FreeplayState extends MusicBeatState
 		changeSong();
 		changeDiff();
 		super.create();
+
+                #if android
+                addVirtualPad(FULL, A_B_C_X_Y_Z);
+                #end
 	}
 
 	override function closeSubState() {
@@ -391,7 +395,7 @@ class FreeplayState extends MusicBeatState
 			for (i in 0...songs[curSelected].songName.length){
 		
 				var itext = new FlxText(0,0,0, "");
-				itext.setFormat(Paths.font(""),36, FlxColor.WHITE, CENTER);
+				itext.setFormat(Paths.font(""),50, FlxColor.WHITE, CENTER);
 				itext.font = songText.font;
 				itext.text = songs[curSelected].songName[i];
 				itext.ID = i;
@@ -402,7 +406,7 @@ class FreeplayState extends MusicBeatState
 					itext.offset.x = 0;
 				}
 				itext.y = (FlxG.height / 2)-(songs[curSelected].songName.length * 70/2) + 70 * i ;
-				itext.x =FlxG.width/4 * 3 - itext.width/2;
+				itext.x =FlxG.width/2 * 3 - itext.width/2;
 				grupoTexto.add(itext);
 			}
 
