@@ -86,9 +86,11 @@ class PauseSubState extends MusicBeatSubstate
 
 		bottomPause = new FlxSprite(1280, 33).loadGraphic(Paths.image('pauseStuff/bottomPanel'));
 		FlxTween.tween(bottomPause, {x: 589}, 0.5, {ease: FlxEase.quartInOut});
+		bottomPause.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bottomPause);
 
                 charSpr = new FlxSprite(-1000, 0).loadGraphic(Paths.image("pauseStuff/" + PlayState.SONG.player2));
+		charSpr.antialiasing = ClientPrefs.globalAntialiasing;
                 add(charSpr);
                 FlxTween.tween(charSpr, {x: 0}, 1, {ease: FlxEase.quartInOut});
 
@@ -132,6 +134,7 @@ class PauseSubState extends MusicBeatSubstate
 		grayButton.x = FlxG.width - 400 + 480;
 		grayButton.y = FlxG.height / 2 + 70;
 		FlxTween.tween(grayButton, {x: grayButton.x - 480}, 0.5, {ease: FlxEase.quartInOut});
+		grayButton.antialiasing = ClientPrefs.globalAntialiasing;
 		add(grayButton);
 
 		grpMenuShit = new FlxTypedGroup<FlxSprite>();
@@ -145,6 +148,7 @@ class PauseSubState extends MusicBeatSubstate
 			var songText:FlxSprite = new FlxSprite(FlxG.width + 400 + 80 * i, FlxG.height / 2 + 70 + 100 * i);
 			songText.loadGraphic(Paths.image("pauseStuff/blackbut"));
 			songText.x += (i + 1) * 480;
+			songText.antialiasing = ClientPrefs.globalAntialiasing;
 			songText.ID = i;
 			FlxTween.tween(songText, {x: songText.x - 480 * (i + 1)}, 0.5, {ease: FlxEase.quartInOut});
 			grpMenuShit.add(songText);
@@ -152,6 +156,7 @@ class PauseSubState extends MusicBeatSubstate
 			actualText.ID = i;
 			actualText.x += (i + 1) * 480;
 			actualText.y = FlxG.height / 2 + 70 + 100 * i + 5;
+			actualText.antialiasing = ClientPrefs.globalAntialiasing;
 
 			FlxTween.tween(actualText, {x: FlxG.width - 400 - 80 * i + 25}, 0.5, {ease: FlxEase.quartInOut});
 			grpMenuShit2.add(actualText);
