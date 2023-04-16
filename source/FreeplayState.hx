@@ -394,7 +394,7 @@ class FreeplayState extends MusicBeatState
 			for (i in 0...songs[curSelected].songName.length){
 		
 				var itext = new FlxText(0,0,0, "");
-				itext.setFormat(Paths.font(""),25, FlxColor.WHITE, CENTER);
+				itext.setFormat(Paths.font(""),36, FlxColor.WHITE, CENTER);
 				itext.font = songText.font;
 				itext.text = songs[curSelected].songName[i];
 				itext.ID = i;
@@ -405,7 +405,7 @@ class FreeplayState extends MusicBeatState
 					itext.offset.x = 0;
 				}
 				itext.y = (FlxG.height / 2)-(songs[curSelected].songName.length * 70/2) + 70 * i ;
-				itext.x =FlxG.width/4 * 3 + 10 - itext.width/2;
+				itext.x =FlxG.width/4 * 3 + 100 - itext.width/2;
 				grupoTexto.add(itext);
 			}
 
