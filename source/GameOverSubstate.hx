@@ -320,62 +320,30 @@ class GameOverSubstate extends MusicBeatSubstate {
 	}
 
 	var isEnding:Bool = false;
-	var endCompleted:Bool = false;
-	var quick:Bool = false;
-	var slowass:FlxTimer;
 
-	function resetState():Void {
-		if (slowass != null) slowass.cancel();
-		FlxTransitionableState.skipNextTransIn = true;
-		MusicBeatState.resetState();
-	}
-
-	function coolStartDeath(?volume:Float = 1):Void {
+	function coolStartDeath(?volume:Float = 1):Void
+	{
 		FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
 	}
 
-	function endSoundComplete():Void {
-		if (endCompleted) {
-			MusicBeatState.resetState();
-			return;
-		}
-		endCompleted = true;
-	}
-
-	function endBullshit():Void {
-		if (isEnding) {
-			quick = true;
-			if (endCompleted) {
-				MusicBeatState.resetState();
-			}
-			return;
-		}
-		isEnding = true;
-
-		inputText.text = 'Restarting...';
-		boyfriend.playAnim('deathConfirm', true);
-		FlxG.sound.music.stop();
-
-		var snd:FlxSound = FlxG.sound.play(Paths.music(endSoundName));
-		snd.onComplete = endSoundComplete;
-
-		new FlxTimer().start(0.7, function(tmr:FlxTimer) {
-			camOther.fade(FlxColor.BLACK, if (quick) 1 else 2, false, function() {
-				if (quick || endCompleted) {
-					resetState();
-				}
-				endCompleted = true;
-
-				if (!quick) {
-					slowass = new FlxTimer().start(1.3, function(tmr:FlxTimer) {
-						resetState();
-						return;
-					});
-				}
+	function endBullshit():Void
+	{
+		if (!isEnding)
+		{
+			isEnding = true;
+			inputText.text = 'Restarting...';
+			boyfriend.playAnim('deathConfirm', true);
+			FlxG.sound.music.stop();
+			FlxG.sound.play(Paths.music(endSoundName));
+			new FlxTimer().start(0.7, function(tmr:FlxTimer)
+			{
+				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
+				{
+					MusicBeatState.resetState();
+				});
 			});
-		});
-
-		PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
+			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
+		}
 	}
 
 	private function getBoyfriend(x:Float, y:Float):Boyfriend {
