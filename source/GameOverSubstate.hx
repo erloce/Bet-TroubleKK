@@ -81,6 +81,7 @@ class GameOverSubstate extends MusicBeatSubstate {
 		Paths.music(loopSoundName);
 		Paths.music(endSoundName);
 		Paths.image(loseImageName);
+	}
 
 	override function create() {
 		instance = this;
