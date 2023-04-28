@@ -336,7 +336,7 @@ class GameOverSubstate extends MusicBeatSubstate {
 
 	function endSoundComplete():Void {
 		if (endCompleted) {
-			resetState();
+			MusicBeatState.resetState();
 			return;
 		}
 		endCompleted = true;
@@ -346,7 +346,7 @@ class GameOverSubstate extends MusicBeatSubstate {
 		if (isEnding) {
 			quick = true;
 			if (endCompleted) {
-				resetState();
+				MusicBeatState.resetState();
 			}
 			return;
 		}
