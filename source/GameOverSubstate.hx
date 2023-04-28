@@ -436,7 +436,6 @@ class GameOverSubstate extends MusicBeatSubstate {
 		"2 + 2 = you're dumb",
 		"Is this intentional?",
 		"PRESS THE FUCKIN NOTES YOU STUPID",
-		"Is this on purpose?",
 		"Are you trying to get an achievement?",
 		"You're embarrassing yourself in front of your viewers",
 		"gay",
