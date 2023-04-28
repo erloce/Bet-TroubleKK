@@ -82,16 +82,11 @@ class GameOverSubstate extends MusicBeatSubstate {
 		Paths.music(endSoundName);
 		Paths.image(loseImageName);
 
-		if (PlayState.instance != null)
-			PlayState.instance.gameOverChar = new Boyfriend(0, 0, characterName);
-	}
-
 	override function create() {
 		instance = this;
 		camOther.zoom = camHUD.zoom = 1;
 		camOther.x = camOther.y = camOther.angle = camHUD.x = camHUD.y = camHUD.angle = 0;
 		PlayState.instance.callOnLuas('onGameOverStart', []);
-		Paths.compress();
 
 		FlxG.sound.play(Paths.sound(deathSoundName));
 
@@ -123,10 +118,6 @@ class GameOverSubstate extends MusicBeatSubstate {
 		camHUD = PlayState.instance.camHUD;
 		camGame = PlayState.instance.camGame;
 
-		var lastTime:Int = Math.floor(Conductor.songPosition / 1000);
-		var lengthTime:Int = Math.floor(PlayState.instance.songLength / 1000);
-		var secondsTotal:Int = Math.floor(lengthTime - lastTime);
-		if (secondsTotal < 0) secondsTotal = 0;
 		Conductor.songPosition = 0;
 
 		texts = new FlxTypedGroup<FlxText>();
@@ -167,10 +158,6 @@ class GameOverSubstate extends MusicBeatSubstate {
 			add(loseSprite);
 
 			var info:String = "On " + PlayState.SONG.song;
-			if (lastTime > 0) {
-				info += " at " + FlxStringUtil.formatTime(lastTime, false) + " - " + FlxStringUtil.formatTime(lengthTime, false);
-				info += " (" + FlxStringUtil.formatTime(secondsTotal, false) + ")";
-			}
 
 			makeText(PlayState.instance.scoreTxt.text, loseAlignmentX, loseAlignmentY);
 			makeText(info, loseAlignmentX, loseAlignmentY);
@@ -179,7 +166,7 @@ class GameOverSubstate extends MusicBeatSubstate {
 			makeText(FlxG.random.getObject(quotes), quoteAlignmentX, quoteAlignmentY, quoteTexts);
 		}
 
-		boyfriend = getBoyfriend(x, y);
+		boyfriend = new Boyfriend(x, y, characterName);
 		boyfriend.x += boyfriend.positionArray[0];
 		boyfriend.y += boyfriend.positionArray[1];
 		add(boyfriend);
@@ -259,7 +246,6 @@ class GameOverSubstate extends MusicBeatSubstate {
 
 	var isFollowingAlready:Bool = false;
 	override function update(elapsed:Float) {
-		PlayState.instance.cleanupLuas();
 		super.update(elapsed);
 
 		if (wiggleLose != null) wiggleLose.update(elapsed);
@@ -393,13 +379,6 @@ class GameOverSubstate extends MusicBeatSubstate {
 
 	private function getBoyfriend(x:Float, y:Float):Boyfriend {
 		var ins:PlayState = PlayState.instance;
-		if (ins != null) {
-			var bf = ins.gameOverChar;
-			if (bf != null && bf.curCharacter == characterName) {
-				bf.setPosition(x, y);
-				return bf;
-			}
-		}
 
 		var bf = ins.boyfriendMap.get(characterName);
 		if (bf != null) {
@@ -439,6 +418,7 @@ class GameOverSubstate extends MusicBeatSubstate {
 		"Are you trying to get an achievement?",
 		"You're embarrassing yourself in front of your viewers",
 		"gay",
+		"I think you died. Just a guess"
 		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 	];
 }
