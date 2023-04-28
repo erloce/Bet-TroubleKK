@@ -51,7 +51,7 @@ class Achievements {
 	public static function unlockAchievement(name:String):Void {
 		FlxG.log.add('Completed achievement "' + name +'"');
 		achievementsMap.set(name, true);
-		/** FlxG.sound.play(Paths.sound('confirmMenu'), 0.7); **/
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 	}
 
 	public static function isAchievementUnlocked(name:String) {
@@ -235,10 +235,10 @@ class AchievementObject extends FlxSpriteGroup {
 		achievementText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT);
 		achievementText.scrollFactor.set();
 
-		/** add(achievementBG);
+		add(achievementBG);
 		add(achievementName);
 		add(achievementText);
-		add(achievementIcon); **/
+		add(achievementIcon);
 
 		var cam:Array<FlxCamera> = FlxCamera.defaultCameras;
 		if(camera != null) {
