@@ -266,7 +266,7 @@ class FunkinLua {
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 				return true;
 			}
-			else return false;
+			else{return false;}
 		});
 
 		// shader shit
