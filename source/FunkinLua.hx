@@ -263,7 +263,7 @@ class FunkinLua {
 			camAchievement.bgColor.alpha = 0;
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
 				Achievements.unlockAchievement(nameAchieve);
-				var luaAchieveIcon = new Achievements.AchievementObject(nameAchieve), camAchievement);
+				var luaAchieveIcon = new Achievements.AchievementObject(nameAchieve, camAchievement);
 				getInstance().add(luaAchieveIcon);
 				ClientPrefs.saveSettings();
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
