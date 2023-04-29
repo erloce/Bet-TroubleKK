@@ -262,7 +262,7 @@ class FunkinLua {
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
 				Achievements.unlockAchievement(name);
 				//var luaAchieveIcon = Achievements.AchievementObject(name, camAchievement);
-				getInstance().add(new Achievements.AchievementObject(name, camAchievement);;
+				getInstance().add(new Achievements.AchievementObject(name, camAchievement));
 				ClientPrefs.saveSettings();
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 				return true;
