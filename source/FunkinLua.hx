@@ -259,6 +259,10 @@ class FunkinLua {
 			var me = this;
 			@:privateAccess
 			var achieveID:Int = Achievements.getAchievementIndex(name);
+			private var camAchievement:FlxCamera;
+			camAchievement = new FlxCamera();
+			camAchievement.bgColor.alpha = 0;
+			FlxG.cameras.add(camAchievement, false);
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
 				Achievements.unlockAchievement(name);
 				//var luaAchieveIcon = Achievements.AchievementObject(name, camAchievement);
