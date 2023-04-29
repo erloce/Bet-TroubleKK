@@ -255,13 +255,15 @@ class FunkinLua {
 			return false;
 		});
 
-		Lua_helper.add_callback(lua, "giveAchievement", function(name:String){
+		Lua_helper.add_callback(lua, "giveLuaAchievement", function(name:String){
 			var me = this;
 			@:privateAccess
-			if(PlayState.instance != null) {
+			achieveID:Int = Achievements.getAchievementIndex(name);
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))
 				Achievements.unlockAchievement(name);
-				PlayState.instance.startAchievement(name);
+				add(new AchievementObject(name, camAchievement));
 				ClientPrefs.saveSettings();
+				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 				return true;
 			}
 			else return false;
