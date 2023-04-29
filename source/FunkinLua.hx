@@ -255,18 +255,16 @@ class FunkinLua {
 			return false;
 		});
 
-		Lua_helper.add_callback(lua, "giveAchievementLua", function(name:String){
+		Lua_helper.add_callback(lua, "giveAchievementLua", function(nameAchieve:String){
 			var me = this;
 			@:privateAccess
-			var achieveID:Int = Achievements.getAchievementIndex(name);
-			private var camAchievement:FlxCamera;
-			camAchievement = new FlxCamera();
+			var achieveID:Int = Achievements.getAchievementIndex(nameAchieve);
+			var camAchievement = new FlxCamera();
 			camAchievement.bgColor.alpha = 0;
-			FlxG.cameras.add(camAchievement, false);
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
-				Achievements.unlockAchievement(name);
-				//var luaAchieveIcon = Achievements.AchievementObject(name, camAchievement);
-				getInstance().add(new Achievements.AchievementObject(name, camAchievement));
+				Achievements.unlockAchievement(nameAchieve);
+				var luaAchieveIcon = new Achievements.AchievementObject(nameAchieve), camAchievement);
+				getInstance().add(luaAchieveIcon);
 				ClientPrefs.saveSettings();
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 				return true;
