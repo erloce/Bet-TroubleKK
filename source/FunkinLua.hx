@@ -255,7 +255,7 @@ class FunkinLua {
 			return false;
 		});
 
-		Lua_helper.add_callback(lua, "giveLuaAchievement", function(name:String){
+		Lua_helper.add_callback(lua, "giveAchievementLua", function(name:String){
 			var me = this;
 			@:privateAccess
 			var achieveID:Int = Achievements.getAchievementIndex(name);
