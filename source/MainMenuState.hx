@@ -146,12 +146,31 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
+		#if ACHIEVEMENTS_ALLOWED
+		Achievements.loadAchievements();
+		var achieveID:Int = Achievements.getAchievementIndex('open_achieve');
+		if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE. NOT ANYMORE HAHAHAHAHAHAHAHHA
+			Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+			giveAchievement();
+			ClientPrefs.saveSettings();
+		}
+		#end
+
 		#if android
 		addVirtualPad(UP_DOWN, A_B_E);
 		#end
 
 		super.create();
 	}
+
+	#if ACHIEVEMENTS_ALLOWED
+	// Unlocks "Freaky on a Friday Night" achievement
+	function giveAchievement() {
+		add(new AchievementObject('open_achieve', camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace('Giving achievement "open_achieve"');
+	}
+	#end
 
 	var selectedSomethin:Bool = false;
 
