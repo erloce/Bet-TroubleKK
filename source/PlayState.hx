@@ -898,31 +898,6 @@ class PlayState extends MusicBeatState
 		startLuasOnFolder('stages/' + curStage + '.lua');
 		#end
 
-		//CUSTOM ACHIVEMENTS
-		#if (MODS_ALLOWED && LUA_ALLOWED && ACHIEVEMENTS_ALLOWED)
-		var luaFiles:Array<String> = Achievements.getModAchievements().copy();
-		if(luaFiles.length > 0){
-			for(luaFile in luaFiles)
-			{
-				var lua = new FunkinLua(luaFile);
-				luaArray.push(lua);
-				achievementArray.push(lua);
-			}
-		}
-		var achievementMetas = Achievements.getModAchievementMetas().copy();
-		for (i in achievementMetas) {
-			if(i.lua_code != null) {
-				var lua = new FunkinLua(null, i.lua_code);
-				luaArray.push(lua);
-				achievementArray.push(lua);
-			}
-			if(i.week_nomiss != null) {
-				achievementWeeks.push(i.week_nomiss);
-			}
-		}
-		#end
-
-
 		var gfVersion:String = SONG.gfVersion;
 		if(gfVersion == null || gfVersion.length < 1)
 		{
