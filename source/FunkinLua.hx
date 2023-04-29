@@ -255,16 +255,13 @@ class FunkinLua {
 			return false;
 		});
 
-		Lua_helper.add_callback(lua, "giveAchievementLua", function(nameAchieve:String){
+		Lua_helper.add_callback(lua, "giveAchievementLua", function(tagAchieve:String){
 			var me = this;
 			@:privateAccess
-			var achieveID:Int = Achievements.getAchievementIndex(nameAchieve);
+			var achieveID:Int = Achievements.getAchievementIndex(tagAchieve);
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
-				Achievements.unlockAchievement(nameAchieve);
-				var luaAchieveIcon = new Achievements.AchievementObject(nameAchieve);
-				getInstance().add(luaAchieveIcon);
+				Achievements.unlockAchievement(tagAchieve);
 				ClientPrefs.saveSettings();
-				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 				return true;
 			}
 			else return false;
