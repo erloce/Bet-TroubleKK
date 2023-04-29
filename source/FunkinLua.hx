@@ -258,7 +258,7 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "giveLuaAchievement", function(name:String){
 			var me = this;
 			@:privateAccess
-			achieveID:Int = Achievements.getAchievementIndex(name);
+			var achieveID:Int = Achievements.getAchievementIndex(name);
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))
 				Achievements.unlockAchievement(name);
 				add(new AchievementObject(name, camAchievement));
