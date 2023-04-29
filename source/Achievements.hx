@@ -43,6 +43,14 @@ class Achievements {
 		return false;
 	}
 
+	public static function exists(name:String) {
+		for (i in achievementsStuff) {
+			if (i[2] == name) return true;
+		}
+
+		return false;
+	}
+
 	public static function getAchievementIndex(name:String) {
 		for (i in 0...achievementsStuff.length) {
 			if(achievementsStuff[i][2] == name) {
