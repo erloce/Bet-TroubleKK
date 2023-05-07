@@ -86,10 +86,8 @@ class GameJoltState extends MusicBeatState
 		add(loginTexts);
 
 		usernameText = new FlxText(0, 125, 300, "Username:", 30);
-		usernameText.alignment = CENTER;
 
 		tokenText = new FlxText(0, 300, 300, "Token:", 30);
-		tokenText.alignment = CENTER;
 
 		usernameText.font = "vcr.ttf";
 		tokenText.font = "vcr.ttf";
@@ -147,6 +145,8 @@ class GameJoltState extends MusicBeatState
 		add(loginButton);
 		backButton.setGraphicSize(150, 50);
 		loginButton.setGraphicSize(150, 50);
+		usernameText.alignment = CENTER;
+		tokenText.alignment = CENTER;
 		loginButton.updateHitbox();
 		backButton.updateHitbox();
 
