@@ -3,6 +3,7 @@ package;
 #if desktop
 import Discord.DiscordClient;
 #end
+import hxgamejolt.GameJolt as GJClient;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -49,6 +50,7 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
@@ -159,6 +161,8 @@ class MainMenuState extends MusicBeatState
 		#if android
 		addVirtualPad(UP_DOWN, A_B_E);
 		#end
+
+		GJClient.init('746342', '33b8a4901e00846ae1c2398c8c0f8985');
 
 		super.create();
 	}
