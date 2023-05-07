@@ -129,7 +129,7 @@ class GamejoltMenu extends MusicBeatState
 			function(message:String) // on Failure
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.7);
-				MusicBeatState.switchState(new GameJoltState());
+				MusicBeatState.switchState(new GamejoltMenu());
 			});
 		});
 
