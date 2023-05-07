@@ -28,7 +28,7 @@ import openfl.text.TextField;
 import openfl.text.TextFormat;
 import MainMenuState;
 
-class GameJoltState extends MusicBeatState
+class GamejoltMenu extends MusicBeatState
 {
 
 	var loginTexts:FlxTypedGroup<FlxText>;
