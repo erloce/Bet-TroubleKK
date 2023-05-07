@@ -272,7 +272,7 @@ class MainMenuState extends MusicBeatState
 			}
 			#end
 			#if (desktop || android)
-			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonY.justPressed #end)
+			else if (FlxG.keys.anyJustPressed([G]) #if android || _virtualpad.buttonY.justPressed #end)
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new GamejoltMenu());
