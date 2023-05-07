@@ -3,6 +3,7 @@ package;
 #if desktop
 import Discord.DiscordClient;
 #end
+import GamejoltMenu;
 import hxgamejolt.GameJolt as GJClient;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -159,7 +160,7 @@ class MainMenuState extends MusicBeatState
 		#end
 
 		#if android
-		addVirtualPad(UP_DOWN, A_B_E);
+		addVirtualPad(UP_DOWN, A_B_X_Y);
 		#end
 
 		GJClient.init('746342', '33b8a4901e00846ae1c2398c8c0f8985');
@@ -264,10 +265,17 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 			#if (desktop || android)
-			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonE.justPressed #end)
+			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonX.justPressed #end)
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());
+			}
+			#end
+			#if (desktop || android)
+			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonY.justPressed #end)
+			{
+				selectedSomethin = true;
+				MusicBeatState.switchState(new GamejoltMenu());
 			}
 			#end
 		}
