@@ -3,7 +3,6 @@ package;
 #if desktop
 import Discord.DiscordClient;
 #end
-import GamejoltMenu;
 import hxgamejolt.GameJolt as GJClient;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -20,6 +19,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import Achievements;
+import GamejoltMenu;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 
