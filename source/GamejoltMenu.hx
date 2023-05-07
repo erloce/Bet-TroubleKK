@@ -139,7 +139,9 @@ class GameJoltState extends MusicBeatState
 			MusicBeatState.switchState(new MainMenuState());
 		});
 
+		#if android
 		FlxG.mouse.visible = false;
+		#end
 
 		add(backButton);
 		add(loginButton);
