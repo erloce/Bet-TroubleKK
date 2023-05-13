@@ -117,8 +117,10 @@ class GamejoltMenu extends MusicBeatState
 		});
 		var loginButton:FlxButton = new FlxButton(usernameBox.x + 75, usernameBox.y + 250, "Login", function()
 		{
+                        GJClient.init('746342', '33b8a4901e00846ae1c2398c8c0f8985');
 			GJClient.authUser(usernameBox.text, tokenBox.text, function(json:Dynamic)
 			{
+
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 				FlxG.save.data.gJLogged = true;
 				FlxG.save.data.gJUser = usernameBox.text;
