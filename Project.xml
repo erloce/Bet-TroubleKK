@@ -132,7 +132,9 @@
 	<define name="hscriptPos" />
 
 	<!--GameJolt bruh-->
-	<haxelib name="hxgamejolt-api" />
+	<haxelib name="tentools" />
+	<haxelib name="systools" />
+	<ndll name="systools" haxelib="systools" />
 	
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
