@@ -1,5 +1,7 @@
 package;
 
+import GameJolt;
+import GameJolt.GameJoltAPI;
 #if desktop
 import sys.thread.Thread;
 #end
@@ -93,6 +95,9 @@ class TitleState extends MusicBeatState
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+
+		GameJoltAPI.connect();
+		GameJoltAPI.authDaUser(FlxG.save.data.gjUser, FlxG.save.data.gjToken);
 
 		#if LUA_ALLOWED
 		Paths.pushGlobalMods();
