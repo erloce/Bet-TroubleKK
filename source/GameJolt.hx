@@ -372,7 +372,9 @@ class GameJoltLogin extends MusicBeatState
         add(loginBoxes);
 
         usernameBox = new FlxUIInputText(0, 175, 300, null, 32, FlxColor.BLACK, FlxColor.GRAY);
+	usernameBox.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
         tokenBox = new FlxUIInputText(0, 275, 300, null, 32, FlxColor.BLACK, FlxColor.GRAY);
+	tokenBox.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 
         loginBoxes.add(usernameBox);
         loginBoxes.add(tokenBox);
