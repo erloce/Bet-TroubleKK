@@ -133,7 +133,7 @@
 
 	<!--GameJolt bruh-->
 	<haxelib name="tentools" />
-	<haxelib name="systools" if="desktop"/>
+	<haxelib name="systools" />
 	<ndll name="systools" haxelib="systools" if="desktop"/>
 	
 	<!--In case you want to use the ui package-->
