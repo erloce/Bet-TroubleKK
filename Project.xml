@@ -133,8 +133,8 @@
 
 	<!--GameJolt bruh-->
 	<haxelib name="tentools"/>
-	<haxelib name="systools" if="desktop"/>
-	<ndll name="systools" haxelib="systools" if="desktop"/>
+	<haxelib name="systools" />
+	<ndll name="systools" haxelib="systools" />
 	
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
