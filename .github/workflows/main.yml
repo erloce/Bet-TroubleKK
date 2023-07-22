@@ -74,7 +74,7 @@ jobs:
 
       - name: Setup Lime
         run: |
-          haxelib run lime rebuild systools linux
+          haxelib run lime rebuild systools android
 
           haxelib run lime setup -alias -y
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
